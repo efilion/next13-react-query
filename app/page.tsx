@@ -1,5 +1,8 @@
 import Content from "./Content";
+import fetchTest from "./fetchTest";
 
 export default async function RootPage() {
-  return <Content />
+  const initialData = await fetchTest();
+
+  return <Content initialData={initialData} />
 }

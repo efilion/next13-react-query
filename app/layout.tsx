@@ -1,4 +1,4 @@
-import Provider from './Provider';
+import { ReactQuery } from './ReactQuery';
 
 export default function RootLayout({
   children,
@@ -9,10 +9,7 @@ export default function RootLayout({
     <html>
       <head></head>
       <body>
-        {
-          /* @ts-expect-error Server Component */
-          <Provider>{children}</Provider>
-        }
+          {children}
       </body>
     </html>
   );
