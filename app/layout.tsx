@@ -9,10 +9,7 @@ export default function RootLayout({
     <html>
       <head></head>
       <body>
-        {
-          /* @ts-expect-error Server Component */
-          <Provider>{children}</Provider>
-        }
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

@@ -1,19 +1,10 @@
-import React from "react";
-import { QueryClient, dehydrate } from "@tanstack/query-core";
-import { ReactQuery } from './ReactQuery';
-import fetchTest from "./fetchTest";
+"use client";
 
-export default async function Provider({children}: {children: React.ReactNode}) {
-    const queryClient = new QueryClient();
+import React, {useState} from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-    // alternatively, use queryClient.setQuery and/or access data directly
-    await queryClient.prefetchQuery(['test'], fetchTest);
+export default function Provider({children}: {children: React.ReactNode}) {
+    const [queryClient] = useState(new QueryClient());
     
-    const provider =
-        <ReactQuery dehydratedState={dehydrate(queryClient)}>
-            {children}
-        </ReactQuery>
-
-    queryClient.clear();
-    return provider;
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }
