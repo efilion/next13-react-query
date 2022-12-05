@@ -3,11 +3,7 @@ import React from "react";
 import HydrateOnClient from "./HydrateOnClient";
 
 function withHydration<P>(WrappedComponent: React.ComponentType<P>) {
-    return async (queryClient?: QueryClient, prefetch?: {key: QueryKey, func: QueryFunction}[]) => {
-        if(!queryClient) {
-            queryClient = new QueryClient();
-        }
-
+    return async (queryClient: QueryClient, prefetch: {key: QueryKey, func: QueryFunction}[]) => {
         await Promise.all(prefetch.map(query => queryClient.prefetchQuery(query.key, query.func)));
 
         const prefetchKeys = prefetch.map(query => query.key);
