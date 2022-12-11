@@ -1,9 +1,11 @@
-import { dehydrate, QueryClient, Query, QueryFunction, QueryKey } from "@tanstack/query-core";
+import { dehydrate, Query, QueryFunction, QueryKey } from "@tanstack/query-core";
 import React from "react";
+import getQueryClient from "./getQueryClient";
 import HydrateOnClient from "./HydrateOnClient";
 
 function withHydration<P>(WrappedComponent: React.ComponentType<P>) {
-    return async (queryClient: QueryClient, prefetch: {key: QueryKey, func: QueryFunction}[]) => {
+    return async(prefetch: {key: QueryKey, func: QueryFunction}[]) => {
+        const queryClient = getQueryClient();
         await Promise.all(prefetch.map(query => queryClient.prefetchQuery(query.key, query.func)));
 
         const prefetchKeys = prefetch.map(query => query.key);
