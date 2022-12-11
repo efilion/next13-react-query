@@ -1,8 +1,7 @@
-import Content from "./Content";
-import fetchTest from "./fetchTest";
+import HydratedContent from './hydratedContent';
 
-export default async function RootPage() {
-  const initialData = await fetchTest();
+export default function RootPage() {
 
-  return <Content initialData={initialData} />
+  // @ts-expect-error Server Component
+  return <HydratedContent />
 }

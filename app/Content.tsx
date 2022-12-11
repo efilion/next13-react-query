@@ -3,12 +3,11 @@
 import { useQuery } from "@tanstack/react-query";
 import fetchTest from "./fetchTest";
 
-export default function Content({initialData}: {initialData: string}) {
+export default function Content() {
 
   const { data, isLoading, isError } = useQuery<string>({
     queryKey: ['test'],
-    queryFn: fetchTest,
-    initialData
+    queryFn: fetchTest
   });
 
   if(isLoading) {

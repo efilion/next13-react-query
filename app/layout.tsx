@@ -1,4 +1,4 @@
-import { ReactQuery } from './ReactQuery';
+import Providers from "./providers";
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
     <html>
       <head></head>
       <body>
-          {children}
+          <Providers>{children}</Providers>
       </body>
     </html>
   );
